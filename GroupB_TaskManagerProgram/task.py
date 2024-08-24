@@ -12,7 +12,7 @@ class Task:
     STATUS_IN_PROGRESS = "In progress"
     STATUS_COMPLETED = "Completed"
 
-    def __init__(self, task_name, description, due_date, priority_level=PRIORITY_LOW, completion_status=0.0):
+    def __init__(self, task_name, description, due_date, priority_level=PRIORITY_LOW, completion_status=STATUS_NOT_STARTED):
         self.task_name = task_name
         self.description =  description
         self.due_date = due_date
