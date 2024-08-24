@@ -1,11 +1,13 @@
 class TaskManager(Task):
-    super().__init__(task_name, description, due_date, priority_level, completion_status)
+    def __init__ (task_name, description, due_date, priority_level, completion_status):
+        super ().__init__(task_name, description, due_date, priority_level, completion_status)
+        self.__tasklist = tasklist
     def add_task ():
-        pass
+        self.__tasklist.append(Task)
     def edit_task ():
         pass
     def delete_task ():
-        pass
+        self.__tasklist.remove(Task)
     def view_tasks ():
         pass
     def sort_tasks_by_priority ():
