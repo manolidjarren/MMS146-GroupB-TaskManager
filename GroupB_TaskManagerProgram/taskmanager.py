@@ -6,7 +6,7 @@ class TaskManager(Task):
     def __init__(self, task_name, description, due_date):
         super().__init__(task_name, description, due_date)
 
-    def add_task (self, task_name): #i rlly like this one but i might change this according sa edit task method
+    def add_task (self, task_name):
        if self.task_name == task_name:
            task_info = {
                 "Task Name": self.task_name,
@@ -18,20 +18,29 @@ class TaskManager(Task):
            TaskManager.task_list.append(task_info)
            print(f"Task '{task_name}' added!")
 
-    def edit_task (self, task_name, new_task_name, new_desc): #Im working on this :3
-        if task_name in TaskManager.task_list:
-            self.task_name = new_task_name
-            self.description = new_desc
+    def edit_task (cls, task_name, new_task_name=None, new_description=None, new_priority_level=None, new_completion_status=None, new_due_date=None):
+        for task in cls.task_list: #finished edit method HIHI
+            if task["Task Name"] == task_name:
+                if new_task_name:
+                    task["Task Name"] = new_task_name
+                if new_description:
+                    task["Description"] = new_description
+                if new_priority_level:
+                    task["Priority Level"] = new_priority_level
+                if new_completion_status:
+                    task["Completion Status"] = new_completion_status
+                if new_due_date:
+                    task["Due_Date"] = new_due_date
 
-    def delete_task (self, task_name): #Very not finished at all eyuck HELLP
+    def delete_task (self, task_name): #I will work on this next
         if task_name in TaskManager.task_list:
             TaskManager.task_list.remove(task_name)
 
     @classmethod
-    def view_all_tasks(cls): #very slay
+    def view_all_tasks(cls): #this is like flawless very nyamers this will stay
         print(cls.task_list)
 
-    def sort_tasks_by_priority (): 
+    def sort_tasks_by_priority ():
         pass
     def get_overdue_tasks ():
         pass
@@ -42,4 +51,8 @@ task1 = TaskManager(
     description ="Reminder: Submit the group project!"
 )
 task1.add_task("Task Manager Group Project")
+TaskManager.view_all_tasks()
+
+task1.edit_task("Task Manager Group Project", new_task_name="Slay", new_description="Time to DTI!")
+
 TaskManager.view_all_tasks()
