@@ -9,7 +9,7 @@ class Task:
 
     # Completion statuses
     STATUS_NOT_STARTED = "Not Started"
-    STATUS_IN_PROGRESS = "In progress"
+    STATUS_IN_PROGRESS = "In Progress"
     STATUS_COMPLETED = "Completed"
 
     def __init__(self, task_name, description, due_date, priority_level=PRIORITY_LOW, completion_status=STATUS_NOT_STARTED):
@@ -23,11 +23,17 @@ class Task:
         self.completion_status = completion_status #Ongoing or Completed ganern
     
     #update the description of the task
-    def set_description (self, description): 
-        self.description = description
+    def set_description (self, new_description):
+        if type(new_description) == str: #checks if the value is a valid type for this attribute
+            self.description = new_description
     #update the priority of the task (numeric value)
-    def set_priority (self, priority_level):
-        self.priority_level = priority_level
+    def set_priority (self, new_priority_level):
+        if type(new_priority_level) == int:
+            if new_priority_level <= 2 & new_priority_level >= 0: #only changes value if within a certain range
+                self.priority_level = new_priority_level
     #update the completion status of the task 
-    def set_completion_status (self, completion_status):
-        self.completion_status = completion_status
+    def set_completion_status (self, new_completion_status):
+        if type(new_completion_status) == str:
+            status = ["Not Started", "In Progress", "Completed"]
+            if any(s == new_completion_status for s in status): #only changes value if its any of the valid statuses
+                self.completion_status = new_completion_status
