@@ -1,14 +1,15 @@
 from datetime import date
+from task import Task
 
 class Reminder(Task):
-    def __init__(self, task_name, due_date, notifications):
-        super().__init__(task_name, due_date)
+    def __init__(self, task: Task, notifications=""):
+        self.task = task
         self.time_until_deadline = self.calculate_time_until_deadline()
         self.notifications = notifications
 
     def calculate_time_until_deadline(self):
         current_date = date.today()
-        return self.due_date - current_date 
+        return self.task.due_date - current_date 
 
     def generate_reminder (self):
         difference = self.time_until_deadline
@@ -19,20 +20,3 @@ class Reminder(Task):
 
     def display_notif(self):
         print(self.notifications)
-
-reminder = Reminder(
-    task_name = "Task Manager Group Project",
-    due_date=date(2024,9,1),
-    notifications="Reminder: Submit the group project!"
-)
-
-reminder2 = Reminder(
-    task_name = "KAS 1: Draft your Essay Answers",
-    due_date=date(2024,8,22),
-    notifications="Complete it as soon as possible!"
-)
-
-reminder.generate_reminder()
-reminder.display_notif()
-reminder2.generate_reminder()
-reminder2.display_notif()
